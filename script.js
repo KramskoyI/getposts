@@ -6,22 +6,18 @@ function getPosts(limit) {
         xhr.responseType = 'json';
 
         xhr.onload = function() {
-            if(xhr.status >= 400){
-                reject(xhr.response)
-            } else { 
-                resolve(xhr.response)
-            }
+            resolve(xhr.response);
         };
 
         xhr.onerror = function(){
-            console.log(xhr.response)
+            reject(console.log('ERROR', xhr.status));
         };
 
         xhr.send();
     
     });
 }
-getPosts(7).then(console.log);
+getPosts(6).then(console.log);
 
 
 
