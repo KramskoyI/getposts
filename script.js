@@ -1,8 +1,8 @@
 function getPosts(limit) {
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
-        const url = `https://jsonplaceholder.typicode.com/users?_limit=${limit}`;
-        xhr.open('GET', url);
+        const url = 'https://jsonplaceholder.typicode.com/users';
+        xhr.open('GET', `${url}?_limit=${limit}`);
         xhr.responseType = 'json';
 
         xhr.onload = function() {
@@ -21,7 +21,7 @@ function getPosts(limit) {
     
     });
 }
-getPosts(6).then(console.log);
+getPosts(7).then(console.log);
 
 
 
