@@ -1,14 +1,27 @@
-function getPosts(index){
-    let xhr = new XMLHttpRequest();
-    let url = new URL('https://jsonplaceholder.typicode.com/users')
-    xhr.open('GET', url);
-    xhr.responseType = 'json';
-    xhr.onload = function() {
-        const mas = xhr.response;
-        const mAs = mas.slice(0,index)
-        console.log(mAs)
-    };
-    xhr.send();
- 
+function getPosts(limit) {
+    return new Promise((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        const url = `https://jsonplaceholder.typicode.com/users?_limit=${limit}`;
+        xhr.open('GET', url);
+        xhr.responseType = 'json';
+
+        xhr.onload = function() {
+            if(xhr.status >= 400){
+                reject(xhr.response)
+            } else { 
+                resolve(xhr.response)
+            }
+        };
+
+        xhr.onerror = function(){
+            console.log(xhr.response)
+        };
+
+        xhr.send();
+    
+    });
 }
-getPosts(1);
+getPosts(6).then(console.log);
+
+
+
